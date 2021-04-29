@@ -7,5 +7,5 @@ def getGitTags( String repo ) {
     def tags    = gettags.text.readLines().collect { it.split()[1].replaceAll( 'refs/tags/', '' )  }.unique()
 
     tags.removeAll { it.contains( '^{}' ) }
-    return tags
+    return tags.reverse()
 }
