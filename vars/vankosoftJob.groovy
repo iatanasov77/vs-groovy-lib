@@ -9,3 +9,10 @@ def getGitTags( String repo ) {
     tags.removeAll { it.contains( '^{}' ) }
     return tags.reverse()
 }
+
+def getGitBranches( String repo ) {
+    def getbranches = ( "git ls-remote --heads -h ${repo} refs/heads/*" ).execute()
+    def branches    = getbranches.text.readLines().collect { it.split()[1].replaceAll( 'refs/heads/', '' )  }.unique()
+
+    return branches
+}
