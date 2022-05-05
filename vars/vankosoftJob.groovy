@@ -16,3 +16,10 @@ def getGitBranches( String repo ) {
 
     return branches
 }
+
+////////////////////////////////////////////////////
+// https://gist.github.com/gavvvr/651e6915db3c5b37068cf2dadcae34bc
+////////////////////////////////////////////////////
+def renderTemplate( template, bindings ) {
+    bindings.inject( template ) { t, k, v -> t.replace("\${" + k + "}", v) }
+}
